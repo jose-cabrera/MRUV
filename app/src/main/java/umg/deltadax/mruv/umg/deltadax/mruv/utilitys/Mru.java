@@ -35,7 +35,8 @@ public class Mru {
     // Accesores de Propiedades-----
     // -----------------------------
     public double getDistance() {
-        return this.Distance;
+        double distancia = (double) Math.round(this.Distance * 1000) / 1000;
+        return distancia;
     }
 
     public void setDistance(double Distance) {
@@ -43,7 +44,8 @@ public class Mru {
     }
 
     public double getVelocity() {
-        return this.Velocity;
+        double velocity = (double) Math.round(this.Velocity * 1000) / 1000;
+        return velocity;
     }
 
     public void setVelocity(double Velocity) {
@@ -51,7 +53,8 @@ public class Mru {
     }
 
     public double getTime() {
-        return this.Time;
+        double time = (double) Math.round(this.Time * 1000) / 1000;
+        return time;
     }
 
     public void setTime(double Time) {

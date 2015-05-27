@@ -1,8 +1,12 @@
 package umg.deltadax.mruv;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.Fade;
+import android.transition.Slide;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,7 +39,7 @@ public class MruActivity extends Activity implements View.OnClickListener {
 
         String sDistancia, sVelocidad, sTiempo, sMensaje = "Error";
         double distancia = 0.0, velocidad = 0.0, tiempo = 0.0;
-        boolean bDistancia = false, bVelocidad = false, bTiempo = false, bError = false;
+        boolean bDistancia = false, bVelocidad = false, bTiempo = false, bError = true;
 
         sDistancia = et_distancia.getText().toString();
         sVelocidad = et_velocidad.getText().toString();
@@ -64,7 +68,7 @@ public class MruActivity extends Activity implements View.OnClickListener {
         object.Init();
 
         //Calcular distancia
-        if (!bDistancia && (bVelocidad && bTiempo)) {
+        if (!bDistancia && (bVelocidad && bTiempo) && bError) {
 
             velocidad = Double.parseDouble(sVelocidad);
             tiempo = Double.parseDouble(sTiempo);
@@ -75,13 +79,16 @@ public class MruActivity extends Activity implements View.OnClickListener {
 
             distancia = object.getDistance();
 
+            bError = false;
         } else {
-            sMensaje = "Debes tener al menos dos parametros para continuar";
-            bError = true;
+            if (bError) {
+                sMensaje = "Debes tener al menos dos parametros llenos y uno vacio para continuar";
+                bError = true;
+            }
         }
 
         //Calcular velocidad
-        if (!bVelocidad && (bDistancia && bTiempo)) {
+        if (!bVelocidad && (bDistancia && bTiempo) && bError) {
 
             distancia = Double.parseDouble(sDistancia);
             tiempo = Double.parseDouble(sTiempo);
@@ -92,13 +99,16 @@ public class MruActivity extends Activity implements View.OnClickListener {
 
             velocidad = object.getVelocity();
 
+            bError = false;
         } else {
-            sMensaje = "Debes tener al menos dos parametros para continuar";
-            bError = true;
+            if (bError) {
+                sMensaje = "Debes tener al menos dos parametros llenos y uno vacio para continuar";
+                bError = true;
+            }
         }
 
         //Calcular tiempo
-        if (!bTiempo && (bVelocidad && bDistancia)) {
+        if (!bTiempo && (bVelocidad && bDistancia) && bError) {
 
             velocidad = Double.parseDouble(sVelocidad);
             distancia = Double.parseDouble(sDistancia);
@@ -109,10 +119,12 @@ public class MruActivity extends Activity implements View.OnClickListener {
 
             tiempo = object.getTime();
 
-
+            bError = false;
         } else {
-            sMensaje = "Debes tener al menos dos parametros para continuar";
-            bError = true;
+            if (bError) {
+                sMensaje = "Debes tener al menos dos parametros llenos y uno vacio para continuar";
+                bError = true;
+            }
         }
 
         if (bError) {
@@ -124,6 +136,16 @@ public class MruActivity extends Activity implements View.OnClickListener {
             intent.putExtra(RespuestasActivity.KEY_DISTANCIA, distancia);
             intent.putExtra(RespuestasActivity.KEY_VELCODIAD, velocidad);
             intent.putExtra(RespuestasActivity.KEY_TIEMPO, tiempo);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                getWindow().setExitTransition(new Slide());
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                startActivity(intent, ActivityOptions
+                        .makeSceneTransitionAnimation(this).toBundle());
+            } else {
+                startActivity(intent);
+            }
         }
 
 
