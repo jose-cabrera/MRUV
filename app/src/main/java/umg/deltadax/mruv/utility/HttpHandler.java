@@ -1,4 +1,4 @@
-package com.centrikal.visitasmovil.utility;
+package umg.deltadax.mruv.utility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +19,6 @@ import android.app.Activity;
 import android.content.Context;
 
 import org.apache.http.util.EntityUtils;
-
-import com.centrikal.visitasmovil.utility.Constants.GAInfo.GAAction;
-import com.centrikal.visitasmovil.utility.Constants.GAInfo.GACategory;
-import com.centrikal.visitasmovil.utility.Constants.GAInfo.GALabel;
 
 import android.util.Base64;
 import android.util.Log;
@@ -95,20 +91,18 @@ public class HttpHandler {
 				Log.d(TAG, "BASE64 recivida " + sBase64);
 				byte[] bBase64aStringJSON = Base64.decode(sBase64, Base64.DEFAULT);
 				String sBase64aStringJSON = new String(bBase64aStringJSON);
-				Rpe.w(TAG, sBase64aStringJSON, ctx);
+
 				if (sBase64aStringJSON.matches("")) {
 					sBase64aStringJSON = "error empty string";
 					Log.e("TAG", sBase64aStringJSON);
 				}
-				Rpe.w("HttpPost", sBase64aStringJSON, ctx);
+
 				return sBase64aStringJSON;
 
 			} catch (Exception e) {
-				Rpe.w("HttpPost", e.toString(), ctx);
+
 				// String title = "Servidor Web";
 				String message = "Existe algun problema con el servidor, intentelo más tarde. ";
-
-				SendGAInfo.sendGAEvent(ctx, GACategory.sincro, GAAction.eventos, GALabel.problemas_ws);
 
 				if (Constants.SHAREDPREFS.LOGIN_SERVICE_ACTIVO) {
 					ShowToast.instantMessage(message);
@@ -126,8 +120,6 @@ public class HttpHandler {
 			ShowToast.instantMessage(message);
 
 			String e = "No internet Connection";
-
-			SendGAInfo.sendGAEvent((Activity) ctx, GACategory.sincro, GAAction.eventos, GALabel.no_internet);
 
 			Log.e("TAG", message + " " + e.toString());
 			return Constants.CONSTANTS.WS_ERROR + e;

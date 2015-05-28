@@ -1,10 +1,10 @@
-package com.centrikal.visitasmovil.utility;
-
-import com.centrikal.visitasmovil.R;
+package umg.deltadax.mruv.utility;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+
+import umg.deltadax.mruv.R;
 
 public class LoadingDialog {
 
@@ -41,7 +41,7 @@ public class LoadingDialog {
 			}
 
 		} catch (Exception e) {
-			Rpe.e("ProgressDialog", e.toString(), ctx);
+
 		}
 
 	}

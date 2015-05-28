@@ -1,7 +1,7 @@
-package umg.deltadax.mruv.umg.deltadax.mruv.utilitys;
+package umg.deltadax.mruv.utility;
 
 /**
- * Created by JoséPablo on 26/05/15.
+ * Created by JosePablo on 26/05/15.
  */
 public class Mruv {
 

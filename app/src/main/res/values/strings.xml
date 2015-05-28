@@ -18,4 +18,7 @@
     <string name="tag_aceleracion">Acelereación:</string>
     <string name="tag_mruv_titulo">Movimiento rectilineo uniforme variado</string>
     <string name="title_activity_respuestas">Respuesta</string>
+    <string name="loading">Cargando...</string>
+    <string name="tag_aceptar">Aceptar</string>
+    <string name="tag_content_image">Icono</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.centrikal.visitasmovil.utility;
+package umg.deltadax.mruv.utility;
 
 import java.util.Random;
 
@@ -81,7 +81,7 @@ public class SimpleNotification {
 		if (mBuilder != null) {
 			mNotificationManager.notify(mId, mBuilder.build());
 		} else {
-			Rpe.e(TAG, "Notificación no ha sido creada", context);
+
 		}
 
 	}

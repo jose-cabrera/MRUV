@@ -1,4 +1,4 @@
-package com.centrikal.visitasmovil.utility;
+package umg.deltadax.mruv.utility;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

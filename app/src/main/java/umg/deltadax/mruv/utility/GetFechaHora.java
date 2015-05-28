@@ -1,4 +1,4 @@
-package com.centrikal.visitasmovil.utility;
+package umg.deltadax.mruv.utility;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,8 +19,6 @@ public class GetFechaHora {
 
 	public static String getDiaDeLaSemana(int day) {
 		String dia = "";
-
-		Rpe.l(TAG, "DIA INGRESADO " + day);
 
 		switch (day) {
 		case Calendar.MONDAY: // 2
@@ -71,7 +69,7 @@ public class GetFechaHora {
 		try {
 			date = iso8601Format.parse(timeToFormat);
 		} catch (ParseException e) {
-			Rpe.l(TAG, e.toString());
+
 			date = null;
 		}
 
@@ -96,7 +94,7 @@ public class GetFechaHora {
 			calendar.set(Calendar.MONTH, month - 1);
 			calendar.set(Calendar.DAY_OF_MONTH, day);
 		} catch (Exception e) {
-			Rpe.l(TAG, e.toString());
+
 			calendar = null;
 		}
 

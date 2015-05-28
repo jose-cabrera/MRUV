@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:minHeight="100dp"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <ScrollView
         android:id="@+id/sv_dialog"
@@ -12,7 +12,7 @@
         android:layout_height="0dp"
         android:layout_gravity="center_vertical"
         android:layout_weight="12"
-        android:minHeight="150dp" >
+        android:minHeight="150dp">
 
         <LinearLayout
             android:id="@+id/ll_dialog"
@@ -20,16 +20,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center_vertical"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_dialogmessage"
-                style="@style/MySectionTitleStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white_text"
                 android:gravity="center"
-                android:textColor="@color/dark_gray_text"
+                android:text="werawefasd fa"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -41,10 +39,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/redQuali"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/tag_aceptar"
-        android:textColor="@color/white_text" />
+        />
 
 </LinearLayout>

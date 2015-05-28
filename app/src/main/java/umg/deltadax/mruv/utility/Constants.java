@@ -1,8 +1,4 @@
-package com.centrikal.visitasmovil.utility;
-
-import com.centrikal.visitasmovil.database.objects.DbActividadesObject;
-import com.centrikal.visitasmovil.database.objects.DbAgendaObject;
-import com.centrikal.visitasmovil.database.objects.DbVisitasObject;
+package umg.deltadax.mruv.utility;
 
 import android.location.Location;
 import android.os.Environment;
@@ -19,12 +15,6 @@ public class Constants {
         public static boolean LOGIN_SERVICE_ACTIVO = false;
         public static String PICTURE_PATH = Environment.getExternalStorageDirectory().getPath()
                 + "/Android/data/com.centrikal.visitasmovil/";
-
-        // Info necesaria para el flujo
-        public static DbAgendaObject AGENDA_ACTIVA;
-        public static DbVisitasObject VISITA_ACTIVA;
-        public static DbActividadesObject ACTIVIDAD_ACTIVA;
-        public static int ACTIVIDAD_DINAMICA = 0;
 
         // Coordenadas
         public static Location networkLocation;

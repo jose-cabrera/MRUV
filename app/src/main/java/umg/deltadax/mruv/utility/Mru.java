@@ -1,4 +1,4 @@
-package umg.deltadax.mruv.umg.deltadax.mruv.utilitys;
+package umg.deltadax.mruv.utility;
 
 /**
  * Created by Jos�Pablo on 26/05/15.
