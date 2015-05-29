@@ -1,7 +1,18 @@
 package umg.deltadax.mruv.utility;
 
-/**
- * Created by JosePablo on 26/05/15.
+/*
+ * ############################################################################
+ *   Autor: JoshBucaro
+ *   Fecha Creación: 2015/04/25
+ *
+ *   Funcionalidad: Propiedades y Funciones básicas para desarrollar MRUV
+ *
+ *   Historial de Modificación:
+ *   AUTHOR	 FECHA		  RAZON
+ *
+ *
+ *
+ * ############################################################################
  */
 public class Mruv {
 

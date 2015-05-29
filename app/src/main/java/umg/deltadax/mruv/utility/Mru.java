@@ -1,7 +1,18 @@
 package umg.deltadax.mruv.utility;
 
 /**
- * Created by Jos�Pablo on 26/05/15.
+ * ############################################################################
+ *   @author: Josh Bucaro
+ *   Fecha Creación:
+ *
+ *   Funcionalidad:
+ *
+ *   Historial de Modificación:
+ *   AUTHOR	 FECHA		  RAZON
+ *
+ *
+ *
+ * ############################################################################
  */
 public class Mru {
 
@@ -9,7 +20,6 @@ public class Mru {
     // ----------------------------
 
     private double Distance;
-
     private double Velocity;
     private double Time;
 
@@ -27,7 +37,7 @@ public class Mru {
         this.Time = Time;
     }
 
-    public void Init() {
+    public void Init(){
         this.Distance = 0;
         this.Velocity = 0;
         this.Time = 0;
@@ -36,8 +46,7 @@ public class Mru {
     // Accesores de Propiedades-----
     // -----------------------------
     public double getDistance() {
-        double distancia = (double) Math.round(this.Distance * 1000) / 1000;
-        return distancia;
+        return this.Distance;
     }
 
     public void setDistance(double Distance) {
@@ -45,8 +54,7 @@ public class Mru {
     }
 
     public double getVelocity() {
-        double velocity = (double) Math.round(this.Velocity * 1000) / 1000;
-        return velocity;
+        return this.Velocity;
     }
 
     public void setVelocity(double Velocity) {
@@ -54,15 +62,14 @@ public class Mru {
     }
 
     public double getTime() {
-        double time = (double) Math.round(this.Time * 1000) / 1000;
-        return time;
+        return this.Time;
     }
 
     public void setTime(double Time) {
         this.Time = Time;
     }
 
-    // Funciones propias de Soluci�n-----
+    // Funciones propias de Solución-----
     // ----------------------------------
     public double fnCalcTime() {
         this.Time = this.Distance / this.Velocity;
@@ -78,5 +85,4 @@ public class Mru {
         this.Velocity = this.Distance / this.Time;
         return this.getVelocity();
     }
-
 }

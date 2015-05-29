@@ -42,17 +42,37 @@ public class RespuestasActivity extends Activity {
                 velocidad = getIntent().getExtras().getDouble(KEY_VELCODIAD);
                 tiempo = getIntent().getExtras().getDouble(KEY_TIEMPO);
 
+
+                mensaje += "Tiempo: " + tiempo;
+                mensaje += "\n";
                 mensaje += "Distancia: " + distancia;
                 mensaje += "\n";
                 mensaje += "Velocidad: " + velocidad;
-                mensaje += "\n";
-                mensaje += "Tiempo: " + tiempo;
+
 
                 tv_mensaje.setText(mensaje);
                 break;
 
             case RESPUESTA_MRUV:
                 tv_titulo.setText(getResources().getText(R.string.tag_mruv_titulo));
+
+                distancia = getIntent().getExtras().getDouble(KEY_DISTANCIA);
+                tiempo = getIntent().getExtras().getDouble(KEY_TIEMPO);
+                aceleracion = getIntent().getExtras().getDouble(KEY_ACELERACION);
+                velocidad_inicial = getIntent().getExtras().getDouble(KEY_VELOCIDAD_INICIAL);
+                velocidad_final = getIntent().getExtras().getDouble(KEY_VELOCIDAD_FINAL);
+
+                mensaje += "Tiempo: " + tiempo;
+                mensaje += "\n";
+                mensaje += "Distancia: " + distancia;
+                mensaje += "\n";
+                mensaje += "Aceleracion: " + aceleracion;
+                mensaje += "\n";
+                mensaje += "Velocidad inicial: " + velocidad_inicial;
+                mensaje += "\n";
+                mensaje += "Velocidad final: " + velocidad_final;
+
+                tv_mensaje.setText(mensaje);
                 break;
         }
     }
