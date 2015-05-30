@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import java.nio.DoubleBuffer;
+import java.util.SimpleTimeZone;
 import java.util.zip.DeflaterOutputStream;
 
 import umg.deltadax.mruv.utility.Mruv;
@@ -158,15 +159,34 @@ public class MruvActivity extends Activity implements View.OnClickListener {
 
                 }
 
+                // Calcular velocidad inicial metodo 3
+                if (!bVelocidadInicial && (bDistancia && bVelocidadFinal && bTiempo) && bError) {
+
+                    distancia = Double.parseDouble(sDistancia);
+                    tiempo = Double.parseDouble(sTiempo);
+                    velocidad_final = Double.parseDouble(sVelocidadFinal);
+
+                    object.setTime(tiempo);
+                    object.setDistance(distancia);
+                    object.setFinVelocity(velocidad_final);
+
+                    object.fnCalcIniVelocity4();
+
+                    velocidad_inicial = object.getIniVelocity();
+                    sVelocidadInicial = String.valueOf(velocidad_inicial);
+                    bVelocidadInicial = true;
+
+                }
+
                 // Calcular velocidad final metodo 1
                 if (!bVelocidadFinal && (bVelocidadInicial && bAceleracion && bTiempo) && bError) {
 
-                    distancia = Double.parseDouble(sDistancia);
+                    aceleracion = Double.parseDouble(sAceleracion);
                     tiempo = Double.parseDouble(sTiempo);
                     velocidad_inicial = Double.parseDouble(sVelocidadInicial);
 
                     object.setTime(tiempo);
-                    object.setDistance(distancia);
+                    object.setAcceleration(aceleracion);
                     object.setIniVelocity(velocidad_inicial);
 
                     object.fnCalcFinVelocity1();
@@ -196,6 +216,25 @@ public class MruvActivity extends Activity implements View.OnClickListener {
 
                 }
 
+                // Calcular velocidad final metodo 3
+                if (!bVelocidadFinal && (bVelocidadInicial && bTiempo && bDistancia) && bError) {
+
+                    distancia = Double.parseDouble(sDistancia);
+                    velocidad_inicial = Double.parseDouble(sVelocidadInicial);
+                    tiempo = Double.parseDouble(sTiempo);
+
+                    object.setIniVelocity(velocidad_inicial);
+                    object.setDistance(distancia);
+                    object.setTime(tiempo);
+
+                    object.fnCalcFinVelocity3();
+
+                    velocidad_final = object.getFinVelocity();
+                    sVelocidadFinal = String.valueOf(velocidad_final);
+                    bVelocidadFinal = true;
+
+                }
+
                 // Calcular tiempo metodo 1
                 if (!bTiempo && (bVelocidadFinal && bVelocidadInicial && bAceleracion) && bError) {
 
@@ -209,6 +248,25 @@ public class MruvActivity extends Activity implements View.OnClickListener {
                     object.setAcceleration(aceleracion);
 
                     object.fnCalcTime1();
+
+                    tiempo = object.getTime();
+                    sTiempo = String.valueOf(tiempo);
+                    bTiempo = true;
+
+                }
+
+                // Calcular tiempo metodo 2
+                if (!bTiempo && (bVelocidadFinal && bVelocidadInicial && bDistancia) && bError) {
+
+                    velocidad_inicial = Double.parseDouble(sVelocidadInicial);
+                    velocidad_final = Double.parseDouble(sVelocidadFinal);
+                    distancia = Double.parseDouble(sDistancia);
+
+                    object.setFinVelocity(velocidad_final);
+                    object.setIniVelocity(velocidad_inicial);
+                    object.setDistance(distancia);
+
+                    object.fnCalcTime3();
 
                     tiempo = object.getTime();
                     sTiempo = String.valueOf(tiempo);
@@ -311,6 +369,26 @@ public class MruvActivity extends Activity implements View.OnClickListener {
                     bDistancia = true;
 
                 }
+
+                // Calcular Distancia metodo 3
+                if (!bDistancia && (bVelocidadFinal && bVelocidadInicial && bTiempo) && bError) {
+
+                    velocidad_inicial = Double.parseDouble(sVelocidadInicial);
+                    velocidad_final = Double.parseDouble(sVelocidadFinal);
+                    tiempo = Double.parseDouble(sTiempo);
+
+                    object.setTime(tiempo);
+                    object.setIniVelocity(velocidad_inicial);
+                    object.setFinVelocity(velocidad_final);
+
+                    object.fnCalcDistance3();
+
+                    distancia = object.getDistance();
+                    sDistancia = String.valueOf(distancia);
+                    bDistancia = true;
+
+                }
+
 
                 if(bDistancia && bTiempo && bAceleracion && bVelocidadFinal && bVelocidadInicial){
                     bTodoCorrecto = true;

@@ -147,4 +147,24 @@ public class Mruv {
         return this.Distance;
     }
 
+    public double fnCalcDistance3() {
+        this.Distance = ((this.FinVelocity - this.IniVelocity) / 2) * this.Time;
+        return this.Distance;
+    }
+
+    public double fnCalcTime3() {
+        this.Time = (2 * this.Distance) / (this.FinVelocity + this.IniVelocity);
+        return this.Time;
+    }
+
+    public double fnCalcFinVelocity3() {
+        this.FinVelocity = ((2 * this.Distance) / this.Time) - this.IniVelocity;
+        return this.FinVelocity;
+    }
+
+    public double fnCalcIniVelocity4 () {
+        this.IniVelocity = ((2 * this.Distance) / this.Time) - this.FinVelocity;
+        return this.IniVelocity;
+    }
+
 }
