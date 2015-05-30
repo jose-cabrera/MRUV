@@ -5,10 +5,10 @@
     <string name="tag_bienvenido">Bienvenido</string>
     <string name="tag_mruv">MRUV</string>
     <string name="tag_mru">MRU</string>
-    <string name="title_activity_mru">Movimiento rectilineo uniforme</string>
-    <string name="title_activity_mruv">Movimiento rectilineo uniforme variado</string>
+    <string name="title_activity_mru">Movimiento rectilíneo uniforme</string>
+    <string name="title_activity_mruv">Movimiento rectilíneo uniforme variado</string>
     <string name="tag_mru_explicacion">Ingresa al menos dos de los parametros para obtener los faltantes</string>
-    <string name="tag_mru_titulo">Movimiento rectilineo uniforme</string>
+    <string name="tag_mru_titulo">Movimiento rectilíneo uniforme</string>
     <string name="tag_distancia">Distancia:</string>
     <string name="tag_velocidad">Velocidad:</string>
     <string name="tag_tiempo">Tiempo:</string>

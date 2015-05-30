@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:minHeight="100dp"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <ScrollView
@@ -35,7 +36,7 @@
 
     <Button
         android:id="@+id/btn_dialogo_compatible"
-        style="buttonBarButtonStyle"
+        android:background="@color/buttonBackGround"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

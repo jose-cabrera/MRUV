@@ -6,18 +6,14 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.Slide;
-import android.view.Menu;
-import android.view.MenuItem;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.nio.DoubleBuffer;
-import java.util.SimpleTimeZone;
-import java.util.zip.DeflaterOutputStream;
 
 import umg.deltadax.mruv.utility.Mruv;
-import umg.deltadax.mruv.utility.ShowDialog;
+import umg.deltadax.mruv.utility.ShowAlertDialog;
 
 
 public class MruvActivity extends Activity implements View.OnClickListener {
@@ -39,14 +35,14 @@ public class MruvActivity extends Activity implements View.OnClickListener {
         btn_calcular = (Button) findViewById(R.id.btn_calcular);
         btn_calcular.setOnClickListener(this);
 
-        ShowDialog.setContext(this);
+        ShowAlertDialog.setContext(this);
     }
 
     private void calcular() {
 
-        String sDistancia, sVelocidadInicial, sVelocidadFinal, sAceleracion, sTiempo, sMensaje = "Error";
+        String sDistancia, sVelocidadInicial, sVelocidadFinal, sAceleracion, sTiempo;
         double distancia = 0.0, velocidad_inicial = 0.0, velocidad_final = 0.0, aceleracion = 0.0, tiempo = 0.0;
-        boolean bDistancia = false, bVelocidadInicial = false, bVelocidadFinal = false, bAceleracion = false, bTiempo = false, bError = true, bTodoCorrecto = false;
+        boolean bDistancia, bVelocidadInicial, bVelocidadFinal, bAceleracion, bTiempo, bError = true, bTodoCorrecto = false;
 
         sDistancia = et_distancia.getText().toString();
         sTiempo = et_tiempo.getText().toString();
@@ -96,7 +92,7 @@ public class MruvActivity extends Activity implements View.OnClickListener {
         }
 
 
-        if (count >= 3) {
+        if (count >= 3 && count < 5) {
 
             Mruv object = new Mruv();
             object.Init();
@@ -390,7 +386,7 @@ public class MruvActivity extends Activity implements View.OnClickListener {
                 }
 
 
-                if(bDistancia && bTiempo && bAceleracion && bVelocidadFinal && bVelocidadInicial){
+                if (bDistancia && bTiempo && bAceleracion && bVelocidadFinal && bVelocidadInicial) {
                     bTodoCorrecto = true;
                 }
 
@@ -416,7 +412,7 @@ public class MruvActivity extends Activity implements View.OnClickListener {
             }
 
         } else {
-            ShowDialog.newDialog("MRUV", "Necesitas almenos 3 datos para poder continuar.");
+            ShowAlertDialog.newDialog("MRUV", "Necesitas como minimo 3 datos y al menos uno vacio.");
         }
     }
 

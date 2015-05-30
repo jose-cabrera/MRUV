@@ -5,7 +5,6 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.transition.Fade;
 import android.transition.Slide;
 import android.util.Log;
 import android.view.View;
@@ -13,7 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import umg.deltadax.mruv.utility.Mru;
-import umg.deltadax.mruv.utility.ShowDialog;
+import umg.deltadax.mruv.utility.ShowAlertDialog;
+
 
 
 public class MruActivity extends Activity implements View.OnClickListener {
@@ -35,7 +35,7 @@ public class MruActivity extends Activity implements View.OnClickListener {
         btn_calcular = (Button) findViewById(R.id.btn_calcular);
         btn_calcular.setOnClickListener(this);
 
-        ShowDialog.setContext(this);
+        ShowAlertDialog.setContext(this);
     }
 
 
@@ -134,7 +134,7 @@ public class MruActivity extends Activity implements View.OnClickListener {
 
         if (bError) {
             //Mostrar dialog con mensaje de error
-            ShowDialog.newDialog("MRU", sMensaje);
+            ShowAlertDialog.newDialog("MRU", sMensaje);
             Log.d(TAG, sMensaje);
         } else {
             Intent intent = new Intent(this, RespuestasActivity.class);
