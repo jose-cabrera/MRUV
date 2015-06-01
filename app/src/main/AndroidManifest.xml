@@ -28,6 +28,14 @@
             android:name=".RespuestasActivity"
             android:label="@string/title_activity_respuestas" >
         </activity>
+        <activity
+            android:name=".CaidaLibreActivity"
+            android:label="@string/title_activity_caida_libre" >
+        </activity>
+        <activity
+            android:name=".TiroParabolicoActivity"
+            android:label="@string/title_activity_tiro_parabolico" >
+        </activity>
     </application>
 
 </manifest>

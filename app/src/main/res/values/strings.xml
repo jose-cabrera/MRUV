@@ -22,4 +22,8 @@
     <string name="loading">Cargando...</string>
     <string name="tag_aceptar">Aceptar</string>
     <string name="tag_content_image">Icono</string>
+    <string name="title_activity_caida_libre">Caida Libre</string>
+    <string name="tag_caida_libre_btn">Caida Libre</string>
+    <string name="tag_tiro_parabolico_btn">Tiro Parabólico</string>
+    <string name="title_activity_tiro_parabolico">TiroParabolicoActivity</string>
 </resources>
