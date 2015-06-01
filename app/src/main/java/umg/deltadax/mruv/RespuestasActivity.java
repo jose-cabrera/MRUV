@@ -16,9 +16,13 @@ public class RespuestasActivity extends Activity {
     public static final String KEY_VELOCIDAD_INICIAL = "key_velocidad_inicial";
     public static final String KEY_VELOCIDAD_FINAL = "key_velocidad_final";
     public static final String KEY_ACELERACION = "key_aceleracion";
+    public static final String KEY_ALTURA = "key_altura";
+    public static final String KEY_ANGULO = "key_angulo";
 
     public static final int RESPUESTA_MRUV = 1;
     public static final int RESPUESTA_MRU = 2;
+    public static final int RESPUESTA_CAIDA_LIBRE = 3;
+    public static final int RESPUESTA_TIRO_PARABOLICO = 4;
 
     TextView tv_titulo, tv_mensaje;
 
