@@ -1,6 +1,6 @@
-MRUV/MRU
+Solve Physics
 ====================
-Aplicación de Android para resolver problemas de fisica de MRUV y MRU.
+Aplicación de Android para resolver problemas de fisica de MRUV, MRU, Caida Libre, Tiro Parabólico.
 
 Destinada para Android JellyBean 4.1.x hasta Android Lolipo 5.x con Material Desings
 
