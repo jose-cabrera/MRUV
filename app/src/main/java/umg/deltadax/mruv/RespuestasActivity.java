@@ -18,6 +18,7 @@ public class RespuestasActivity extends Activity {
     public static final String KEY_ACELERACION = "key_aceleracion";
     public static final String KEY_ALTURA = "key_altura";
     public static final String KEY_ANGULO = "key_angulo";
+    public static final String KEY_GRAVEDAD = "key_gravedad";
 
     public static final int RESPUESTA_MRUV = 1;
     public static final int RESPUESTA_MRU = 2;
@@ -38,7 +39,7 @@ public class RespuestasActivity extends Activity {
 
         String mensaje = "";
 
-        Double distancia = 0.0, tiempo = 0.0, velocidad = 0.0, aceleracion = 0.0, velocidad_inicial = 0.0, velocidad_final = 0.0;
+        Double distancia = 0.0, tiempo = 0.0, velocidad = 0.0, aceleracion = 0.0, velocidad_inicial = 0.0, velocidad_final = 0.0, altura = 0.0, gravedad = 0.0;
         switch (respuesta) {
             case RESPUESTA_MRU:
                 tv_titulo.setText(getResources().getText(R.string.tag_mru_titulo));
@@ -71,6 +72,28 @@ public class RespuestasActivity extends Activity {
                 mensaje += "Distancia: " + distancia;
                 mensaje += "\n";
                 mensaje += "Aceleracion: " + aceleracion;
+                mensaje += "\n";
+                mensaje += "Velocidad inicial: " + velocidad_inicial;
+                mensaje += "\n";
+                mensaje += "Velocidad final: " + velocidad_final;
+
+                tv_mensaje.setText(mensaje);
+                break;
+
+            case RESPUESTA_CAIDA_LIBRE:
+                tv_titulo.setText(getResources().getText(R.string.tag_titulo_caida_libre));
+
+                altura = getIntent().getExtras().getDouble(KEY_ALTURA);
+                tiempo = getIntent().getExtras().getDouble(KEY_TIEMPO);
+                gravedad = getIntent().getExtras().getDouble(KEY_GRAVEDAD);
+                velocidad_inicial = getIntent().getExtras().getDouble(KEY_VELOCIDAD_INICIAL);
+                velocidad_final = getIntent().getExtras().getDouble(KEY_VELOCIDAD_FINAL);
+
+                mensaje += "Tiempo: " + tiempo;
+                mensaje += "\n";
+                mensaje += "Altura: " + altura;
+                mensaje += "\n";
+                mensaje += "Gravedad: " + gravedad;
                 mensaje += "\n";
                 mensaje += "Velocidad inicial: " + velocidad_inicial;
                 mensaje += "\n";

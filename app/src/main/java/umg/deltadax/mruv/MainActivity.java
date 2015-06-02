@@ -15,7 +15,7 @@ import android.widget.Button;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-    private Button btn_mru, btn_mruv;
+    private Button btn_mru, btn_mruv, btn_caida_libre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_mru.setOnClickListener(this);
         btn_mruv = (Button) findViewById(R.id.btn_mruv);
         btn_mruv.setOnClickListener(this);
+
+        btn_caida_libre = (Button) findViewById(R.id.btn_caida_libre);
+        btn_caida_libre.setOnClickListener(this);
     }
 
     @Override
@@ -56,6 +59,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             .makeSceneTransitionAnimation(this).toBundle());
                 } else {
                     startActivity(mruv);
+                }
+                break;
+
+            case R.id.btn_caida_libre:
+                Intent caida_libre = new Intent(this, CaidaLibreActivity.class);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    startActivity(caida_libre, ActivityOptions
+                            .makeSceneTransitionAnimation(this).toBundle());
+                } else {
+                    startActivity(caida_libre);
                 }
                 break;
         }
