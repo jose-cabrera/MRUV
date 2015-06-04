@@ -29,4 +29,14 @@
     <string name="tag_titulo_caida_libre">Caida Libre</string>
     <string name="tag_gravedad">Gravedad:</string>
     <string name="tag_altura">Altura:</string>
+    <string name="tag_altura_maxima">Altura maxima:</string>
+    <string name="tag_distancia_maxima">Distancia maxima:</string>
+    <string name="tag_angulo">Angulo:</string>
+    <string name="tag_tiempo_up">Tiempo subida:</string>
+    <string name="tag_tiempo_down">Tiempo bajada:</string>
+    <string name="tag_tiempo_total">Tiempo total:</string>
+    <string name="tag_velocidad_inicial_x">Velocidad inicial en X:</string>
+    <string name="tag_velocidad_final_x">Velocidad final en X:</string>
+    <string name="tag_velocidad_inicial_y">Velocidad inicial en Y:</string>
+    <string name="tag_velocidad_final_y">Velocidad final en Y:</string>
 </resources>

@@ -15,7 +15,7 @@ import android.widget.Button;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-    private Button btn_mru, btn_mruv, btn_caida_libre;
+    private Button btn_mru, btn_mruv, btn_caida_libre, btn_tiro_parabolico;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +28,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         btn_mru = (Button) findViewById(R.id.btn_mru);
         btn_mru.setOnClickListener(this);
+
         btn_mruv = (Button) findViewById(R.id.btn_mruv);
         btn_mruv.setOnClickListener(this);
 
         btn_caida_libre = (Button) findViewById(R.id.btn_caida_libre);
         btn_caida_libre.setOnClickListener(this);
+
+        btn_tiro_parabolico = (Button) findViewById(R.id.btn_tiro_parabolico);
+        btn_tiro_parabolico.setOnClickListener(this);
     }
 
     @Override
@@ -69,6 +73,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             .makeSceneTransitionAnimation(this).toBundle());
                 } else {
                     startActivity(caida_libre);
+                }
+                break;
+
+            case R.id.btn_tiro_parabolico:
+                Intent tiro = new Intent(this, TiroParabolicoActivity.class);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    startActivity(tiro, ActivityOptions
+                            .makeSceneTransitionAnimation(this).toBundle());
+                } else {
+                    startActivity(tiro);
                 }
                 break;
         }

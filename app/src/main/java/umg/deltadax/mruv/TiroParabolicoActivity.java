@@ -1,12 +1,10 @@
 package umg.deltadax.mruv;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 
-public class TiroParabolicoActivity extends ActionBarActivity {
+public class TiroParabolicoActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
