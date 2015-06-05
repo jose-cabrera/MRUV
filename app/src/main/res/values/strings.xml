@@ -39,4 +39,5 @@
     <string name="tag_velocidad_final_x">Velocidad final en X:</string>
     <string name="tag_velocidad_inicial_y">Velocidad inicial en Y:</string>
     <string name="tag_velocidad_final_y">Velocidad final en Y:</string>
+    <string name="tag_tiro_parabolico_explicacion">Ingresa al menos 5 de los parametros para obtener los faltantes</string>
 </resources>

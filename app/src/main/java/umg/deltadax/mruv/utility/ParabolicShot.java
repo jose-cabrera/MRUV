@@ -19,6 +19,7 @@ public class ParabolicShot {
     // Properties-----
     // ---------------
     private double Gravity;
+    private double TimeUp;
     private double MaxHeight;
     private double MaxDistance;
     private double Angle;
@@ -26,13 +27,11 @@ public class ParabolicShot {
     private double PosX;
     private double PosY;
 
-    private double FinVelocityX;
     private double FinVelocity;
     private double FinVelocityY;
     private double IniVelocity;
     private double IniVelocityX;
     private double IniVelocityY;
-    private double TimeUp;
     private double TimeDown;
     private double TotalTime;
 
@@ -49,7 +48,6 @@ public class ParabolicShot {
         this.PosX			= 0;
         this.PosY			= 0;
         this.FinVelocity	= 0;
-        this.FinVelocityX	= 0;
         this.FinVelocityY	= 0;
         this.IniVelocity 	= 0;
         this.IniVelocityX	= 0;
@@ -172,12 +170,11 @@ public class ParabolicShot {
         return this.Gravity;
     }
     public double fnCalcGravity5(){
-//        this.Gravity = (-1 * this.IniVelocityX)((2 * this.IniVelocity * Math.sin(this.Angle))/this.MaxDistance);
+        this.Gravity = (-1 * this.IniVelocityX)*((2 * this.IniVelocity * Math.sin(Math.toRadians(this.Angle)))/this.MaxDistance);
         return this.Gravity;
     }
-
     public double fnCalcGravity6(){
-        this.Gravity = (-1) * ((Math.pow(this.IniVelocity,2) * Math.sin(2 * this.Angle))/this.MaxDistance);
+        this.Gravity = (-1) * ((Math.pow(this.IniVelocity,2) * Math.sin(2 * Math.toRadians(this.Angle)))/this.MaxDistance);
         return this.Gravity;
     }
 
@@ -227,36 +224,95 @@ public class ParabolicShot {
         return this.TotalTime;
     }
 
+    // Max Height
+    public double fnCalcMaxHeight1(){
+        this.MaxHeight = Math.pow(this.IniVelocityY,2)/(2 * this.Gravity);
+        return this.MaxHeight;
+    }
 
-    //MaxHeight;
-    //MaxDistance;
-    //Angle;
-    //PosX;
-    //PosY;
-    //FinVelocity;
-    //FinVelocityY;
-    //IniVelocity;
-    //IniVelocityX;
-    //IniVelocityY;
-    //TimeUp;
+    // Max Distance
+    public double fnCalcMaxDistance1(){
+        this.MaxDistance = this.IniVelocityX * this.TotalTime;
+        return this.MaxDistance;
+    }
+//    public double fnCalcMaxDistance2(){
+//        this.MaxDistance = this.IniVelocityX * this.TotalTime;
+//        return this.MaxDistance;
+//    }
 
+    // Angle
+    public double fnCalcAngle1(){
+        this.Angle = Math.acos(this.IniVelocityX / this.IniVelocity);
+        return this.Angle;
+    }
+    public double fnCalcAngle2(){
+        this.Angle =Math.asin(this.IniVelocityY/this.IniVelocity);
+        return this.Angle;
+    }
+    public double fnCalcAngle3(){
+        this.Angle = Math.asin(((-1) * (this.MaxDistance/this.IniVelocityX) * this.Gravity) / (2 * this.IniVelocity) );
+        return this.Angle;
+    }
+    public double fnCalcAngle4(){
+        this.Angle = Math.sin(((-1) * this.MaxDistance) * this.Gravity)/2;
+        return this.Angle;
+    }
+
+    //FinVelocity
+//    public double fnCalcFinVelocity1(){
+//        return 0.0;
+//    }
+
+    //FinVelocityY
+
+
+    //IniVelocity
+    public double fnCalcIniVelocity1(){
+        this.IniVelocity = this.IniVelocityX/(Math.toDegrees(Math.toRadians(Math.cos(this.Angle))));
+        return this.IniVelocity;
+    }
+    public double fnCalcIniVelocity2(){
+        this.IniVelocity = this.IniVelocityY/(Math.toDegrees(Math.toRadians(Math.sin(this.Angle))));
+        return this.IniVelocity;
+    }
+    public double fnCalcIniVelocity3(){
+        this.IniVelocity = (((-1) * this.MaxDistance) / this.IniVelocityX) * this.Gravity/(2 * Math.sin(Math.toRadians(this.Angle)));
+        return this.IniVelocity;
+    }
+    public double fnCalcIniVelocity4(){
+        this.IniVelocity = Math.sqrt((((-1) * this.MaxDistance) * this.Gravity) / Math.sin(2 * Math.toRadians(this.Angle)));
+        return this.IniVelocity;
+    }
+
+    //IniVelocityX
+    public double fnCalcIniVelocityX1(){
+        this.IniVelocityX = this.IniVelocity * Math.cos(Math.toRadians(this.Angle));
+        return IniVelocityX;
+    }
+    public double fnCalcIniVelocityX2(){
+        this.IniVelocityX = this.MaxDistance / this.TotalTime;
+        return this.IniVelocityX;
+    }
+    public double fnCalcIniVelocityX3(){
+        this.IniVelocityX = this.MaxDistance / ( (-1) * (2 * this.IniVelocity * Math.sin(Math.toRadians(this.Angle)) / this.Gravity));
+        return this.IniVelocity;
+    }
+
+    //IniVelocityY
+    public double fnCalcIniVelocityY1(){
+        this.IniVelocityY = this.IniVelocity * Math.sin(Math.toRadians(this.Angle));
+        return this.IniVelocityY;
+    }
+    public double fnCalcIniVelocityY2(){
+        this.IniVelocityY = Math.sqrt(this.MaxHeight * (2 * this.Gravity));
+        return this.IniVelocityY;
+    }
+    public double fnCalcIniVelocityY3(){
+        this. IniVelocityY = (-1) * TimeUp * this.Gravity;
+        return this.IniVelocityY;
+    }
+    public double fnCalcIniVelocityY4(){
+        this.IniVelocityY = ((-1) * this.TotalTime * this.Gravity) / 2;
+        return this.IniVelocityY;
+    }
 }
-
-
-
-/*
-VoX = Vo Cos (angulo)
-VoY = Vo Sen (angulo)
-MaxX = VoX * T
-MaxY = (VoY^2) / (2*gravedad)
-
-Tsub = - ( VoY/gravedad  )
-tbaj = sqrt(  (2*H)/gravedad   )
-Tair = - (  (2 * VoY) / gravedad  )
-
-
-DX = (VoX)( -(  (2 * Vo * Sen(angulo))/Gravedad     )   )
-DX = -(  (Vo^2 * sen(2 * angulo))/ gravedad     )
-DX = (VoX) * Taire
-
-*/

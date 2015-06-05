@@ -17,7 +17,11 @@
         android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="@string/tag_titulo_caida_libre"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge" >
+
+        <requestFocus/>
+
+    </TextView>
 
     <TextView
         android:id="@+id/textView2"
@@ -26,7 +30,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="5dp"
         android:gravity="center_horizontal"
-        android:text="@string/tag_mruv_explicacion"
+        android:text="@string/tag_tiro_parabolico_explicacion"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ScrollView
@@ -55,7 +59,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/et_altura"
+                    android:id="@+id/et_altura_maxima"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -78,7 +82,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/et_velocidad_inicial"
+                    android:id="@+id/et_distancia_maxima"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -102,7 +106,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/et_velocidad_final"
+                    android:id="@+id/et_angulo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -148,7 +152,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/et_tiempo"
+                    android:id="@+id/et_tiempo_subida"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -173,7 +177,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/editText"
+                    android:id="@+id/et_tiempo_bajada"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -196,7 +200,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/editText2"
+                    android:id="@+id/et_tiempo_total"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -219,30 +223,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/editText3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="numberDecimal" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/tag_velocidad_final_x"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <EditText
-                    android:id="@+id/editText4"
+                    android:id="@+id/et_ini_vel_x"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -265,7 +246,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/editText5"
+                    android:id="@+id/et_ini_vel_y"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -288,7 +269,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/editText6"
+                    android:id="@+id/et_vel_fin_y"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -311,7 +292,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/editText7"
+                    android:id="@+id/et_ini_vel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -334,7 +315,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <EditText
-                    android:id="@+id/editText8"
+                    android:id="@+id/et_velocidad_final"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
