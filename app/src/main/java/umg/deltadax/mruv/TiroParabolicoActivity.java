@@ -1,7 +1,11 @@
 package umg.deltadax.mruv;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.Slide;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,8 +18,8 @@ import umg.deltadax.mruv.utility.ShowAlertDialog;
 
 public class TiroParabolicoActivity extends Activity implements View.OnClickListener {
 
-    EditText et_gravedad, et_tiempo_subida, et_tiempo_bajada, et_tiempo_total, et_altura_maxima, et_angulo, et_fin_vel, et_fin_vel_y;
-    EditText et_ini_vel, et_ini_vel_y, et_ini_vel_x, et_distacia_maxima;
+    EditText et_gravedad, et_tiempo_subida, et_tiempo_bajada, et_tiempo_total, et_altura_maxima, et_angulo,
+            et_ini_vel, et_ini_vel_y, et_ini_vel_x, et_distacia_maxima;
 
     Button btn_calcular;
 
@@ -33,8 +37,6 @@ public class TiroParabolicoActivity extends Activity implements View.OnClickList
         et_tiempo_total = (EditText) findViewById(R.id.et_tiempo_total);
         et_ini_vel_x = (EditText) findViewById(R.id.et_ini_vel_x);
         et_ini_vel_y = (EditText) findViewById(R.id.et_ini_vel_y);
-        et_fin_vel_y = (EditText) findViewById(R.id.et_vel_fin_y);
-        et_fin_vel = (EditText) findViewById(R.id.et_velocidad_final);
         et_ini_vel = (EditText) findViewById(R.id.et_ini_vel);
 
         btn_calcular = (Button) findViewById(R.id.btn_calcular);
@@ -46,16 +48,14 @@ public class TiroParabolicoActivity extends Activity implements View.OnClickList
 
     private void calcular() {
         Boolean bAlturaMaxima, bDistanciaMaxima, bAngulo, bGravedad = null, bTiempoSubida, bTiempoBajada,
-                bTiempoTotal, bVelocidadInicial, bVelocidadFinal, bVelocidadInicialX, bVelocidadInicialY,
-                bVelocidadFinalX, bTodoCorrecto = false;
+                bTiempoTotal, bVelocidadInicial, bVelocidadInicialX, bVelocidadInicialY,
+                bTodoCorrecto = false;
 
         String sAlturaMaxima, sDistanciaMaxima, sAngulo, sGravedad, sTiempoSubida, sTiempoBajada,
-                sTiempoTotal, sVelocidadInicial, sVelocidadFinal, sVelocidadInicialX, sVelocidadInicialY,
-                sVelocidadFinalY;
+                sTiempoTotal, sVelocidadInicial, sVelocidadInicialX, sVelocidadInicialY;
 
-        double alturaMaxima, distanciaMaxima, angulo, gravedad, tiempoSubida, tiempoBajdada,
-                tiempoTotal, velocidadInicial, velocidadFinal, velocidadInicialX, velocidadInicialY,
-                velociadFinalY;
+        double alturaMaxima = 0, distanciaMaxima = 0, angulo = 0, gravedad = 0, tiempoSubida = 0, tiempoBajdada = 0,
+                tiempoTotal = 0, velocidadInicial = 0, velocidadInicialX = 0, velocidadInicialY = 0;
 
         sAlturaMaxima = et_altura_maxima.getText().toString();
         sDistanciaMaxima = et_distacia_maxima.getText().toString();
@@ -64,10 +64,8 @@ public class TiroParabolicoActivity extends Activity implements View.OnClickList
         sTiempoBajada = et_tiempo_bajada.getText().toString();
         sTiempoTotal = et_tiempo_total.getText().toString();
         sVelocidadInicial = et_ini_vel.getText().toString();
-        sVelocidadFinal = et_fin_vel.getText().toString();
         sVelocidadInicialX = et_ini_vel_x.getText().toString();
         sVelocidadInicialY = et_ini_vel_y.getText().toString();
-        sVelocidadFinalY = et_fin_vel_y.getText().toString();
         sGravedad = et_gravedad.getText().toString();
 
         int count = 0;
@@ -120,13 +118,6 @@ public class TiroParabolicoActivity extends Activity implements View.OnClickList
             bVelocidadInicial = true;
         }
 
-        if (sVelocidadFinal.isEmpty()) {
-            bVelocidadFinal = false;
-        } else {
-            count += 1;
-            bVelocidadFinal = true;
-        }
-
         if (sVelocidadInicialX.isEmpty()) {
             bVelocidadInicialX = false;
         } else {
@@ -139,13 +130,6 @@ public class TiroParabolicoActivity extends Activity implements View.OnClickList
         } else {
             count += 1;
             bVelocidadInicialY = true;
-        }
-
-        if (sVelocidadFinalY.isEmpty()) {
-            bVelocidadInicialY = false;
-        } else {
-            count += 1;
-            bVelocidadInicialY = false;
         }
 
         if (sGravedad.isEmpty()) {
@@ -375,7 +359,7 @@ public class TiroParabolicoActivity extends Activity implements View.OnClickList
                     velocidadInicialX = Double.parseDouble(sVelocidadInicialX);
 
                     object.setMaxHeight(alturaMaxima);
-                    object.setIniVelocityY(velocidadInicialX);
+                    object.setIniVelocityX(velocidadInicialX);
 
                     object.fnCalcTotalTime3();
 
@@ -670,6 +654,39 @@ public class TiroParabolicoActivity extends Activity implements View.OnClickList
 
             } while (!bTodoCorrecto);
 
+            alturaMaxima = Double.parseDouble(sAlturaMaxima);
+            distanciaMaxima = Double.parseDouble(sDistanciaMaxima);
+            angulo = Double.parseDouble(sAngulo);
+            gravedad = Double.parseDouble(sGravedad);
+            tiempoBajdada = Double.parseDouble(sTiempoBajada);
+            tiempoSubida = Double.parseDouble(sTiempoSubida);
+            tiempoTotal = Double.parseDouble(sTiempoTotal);
+            velocidadInicial = Double.parseDouble(sVelocidadInicial);
+            velocidadInicialX = Double.parseDouble(sVelocidadInicialX);
+            velocidadInicialY = Double.parseDouble(sVelocidadInicialY);
+
+            Intent intent = new Intent(this, RespuestasActivity.class);
+            intent.putExtra(RespuestasActivity.KEY_RESPUESTA, RespuestasActivity.RESPUESTA_TIRO_PARABOLICO);
+            intent.putExtra(RespuestasActivity.KEY_ALTURA_MAXIMA, alturaMaxima);
+            intent.putExtra(RespuestasActivity.KEY_DISTANCIA_MAXIMA, distanciaMaxima);
+            intent.putExtra(RespuestasActivity.KEY_ANGULO, angulo);
+            intent.putExtra(RespuestasActivity.KEY_GRAVEDAD, gravedad);
+            intent.putExtra(RespuestasActivity.KEY_TIEMPO_BAJADA, tiempoBajdada);
+            intent.putExtra(RespuestasActivity.KEY_TIEMPO_SUBIDA, tiempoSubida);
+            intent.putExtra(RespuestasActivity.KEY_TIEMPO_TOTAL, tiempoTotal);
+            intent.putExtra(RespuestasActivity.KEY_VELOCIDAD_INICIAL, velocidadInicial);
+            intent.putExtra(RespuestasActivity.KEY_VELOCIDAD_INICIALX, velocidadInicialX);
+            intent.putExtra(RespuestasActivity.KEY_VELOCIDAD_INICIALY, velocidadInicialY);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                getWindow().setExitTransition(new Slide());
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                startActivity(intent, ActivityOptions
+                        .makeSceneTransitionAnimation(this).toBundle());
+            } else {
+                startActivity(intent);
+            }
 
         } else {
             ShowAlertDialog.newDialog("", getString(R.string.tag_tiro_parabolico_explicacion));

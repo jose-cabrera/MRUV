@@ -40,4 +40,7 @@
     <string name="tag_velocidad_inicial_y">Velocidad inicial en Y:</string>
     <string name="tag_velocidad_final_y">Velocidad final en Y:</string>
     <string name="tag_tiro_parabolico_explicacion">Ingresa al menos 5 de los parametros para obtener los faltantes</string>
+    <string name="title_activity_tiro_vertical">TiroVerticalActivity</string>
+    <string name="tag_tiro_vertical">Tiro Vertical</string>
+    <string name="tag_tiro_parabolico_titulo">Tiro Parabólico</string>
 </resources>

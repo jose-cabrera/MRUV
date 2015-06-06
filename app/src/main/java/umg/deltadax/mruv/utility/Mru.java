@@ -1,5 +1,7 @@
 package umg.deltadax.mruv.utility;
 
+import java.util.ArrayList;
+
 /**
  * ############################################################################
  *   @author: Josh Bucaro
@@ -22,6 +24,7 @@ public class Mru {
     private double Distance;
     private double Velocity;
     private double Time;
+    private ArrayList<String> Log = new ArrayList<String>();
 
     // Constructor-----
     // ----------------
@@ -69,20 +72,27 @@ public class Mru {
         this.Time = Time;
     }
 
+    public ArrayList<String> getLog(){
+        return this.Log;
+    }
+
     // Funciones propias de Solución-----
     // ----------------------------------
     public double fnCalcTime() {
         this.Time = this.Distance / this.Velocity;
+        this.Log.add("t = s / v");
         return this.getTime();
     }
 
     public double fnCalcDistance() {
         this.Distance = this.Time * this.Velocity;
+        this.Log.add("s = t * v");
         return this.getDistance();
     }
 
     public double fnCalcVelocity() {
         this.Velocity = this.Distance / this.Time;
+        this.Log.add("v = s / t");
         return this.getVelocity();
     }
 }

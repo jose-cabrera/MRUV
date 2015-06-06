@@ -36,6 +36,10 @@
             android:name=".TiroParabolicoActivity"
             android:label="@string/title_activity_tiro_parabolico" >
         </activity>
+        <activity
+            android:name=".TiroVerticalActivity"
+            android:label="@string/title_activity_tiro_vertical" >
+        </activity>
     </application>
 
 </manifest>
