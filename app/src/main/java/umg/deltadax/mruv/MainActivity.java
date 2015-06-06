@@ -15,7 +15,7 @@ import android.widget.Button;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-    private Button btn_mru, btn_mruv, btn_caida_libre, btn_tiro_parabolico;
+    private Button btn_mru, btn_mruv, btn_caida_libre, btn_tiro_parabolico, btn_tiro_vertical;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         btn_tiro_parabolico = (Button) findViewById(R.id.btn_tiro_parabolico);
         btn_tiro_parabolico.setOnClickListener(this);
+
+        btn_tiro_vertical = (Button) findViewById(R.id.btn_tiro_vertical);
+        btn_tiro_vertical.setOnClickListener(this);
     }
 
     @Override
@@ -83,6 +86,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             .makeSceneTransitionAnimation(this).toBundle());
                 } else {
                     startActivity(tiro);
+                }
+                break;
+
+            case R.id.btn_tiro_vertical:
+                Intent vertical = new Intent(this, TiroVerticalActivity.class);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    startActivity(vertical, ActivityOptions
+                            .makeSceneTransitionAnimation(this).toBundle());
+                } else {
+                    startActivity(vertical);
                 }
                 break;
         }

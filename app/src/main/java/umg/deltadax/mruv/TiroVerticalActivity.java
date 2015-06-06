@@ -1,38 +1,172 @@
 package umg.deltadax.mruv;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.transition.Slide;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
+import java.util.ArrayList;
 
-public class TiroVerticalActivity extends ActionBarActivity {
+import umg.deltadax.mruv.utility.InteractVerticalThrow;
+import umg.deltadax.mruv.utility.ShowAlertDialog;
+
+public class TiroVerticalActivity extends Activity implements View.OnClickListener {
+
+    EditText et_altura, et_velocidad_inicial, et_velocidad_final, et_gravedad, et_tiempo;
+    Button btn_calcular;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tiro_vertical);
+
+        btn_calcular = (Button) findViewById(R.id.btn_calcular);
+        btn_calcular.setOnClickListener(this);
+
+        et_altura = (EditText) findViewById(R.id.et_altura);
+        et_gravedad = (EditText) findViewById(R.id.et_gravedad);
+        et_tiempo = (EditText) findViewById(R.id.et_tiempo);
+        et_velocidad_final = (EditText) findViewById(R.id.et_velocidad_final);
+        et_velocidad_inicial = (EditText) findViewById(R.id.et_velocidad_inicial);
+
+        ShowAlertDialog.setContext(this);
+
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_tiro_vertical, menu);
-        return true;
-    }
+    private void calcular(){
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        String sAltura, sVelocidadInicial, sVelocidadFinal, sGravedad, sTiempo;
+        double altura = 0.0, velocidad_inicial = 0.0, velocidad_final = 0.0, gravedad = 0.0, tiempo = 0.0;
+        boolean bAltura, bVelocidadInicial, bVelocidadFinal, bGravedad, bTiempo, bError = true, bTodoCorrecto = false;
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        sAltura = et_altura.getText().toString();
+        sTiempo = et_tiempo.getText().toString();
+        sVelocidadFinal = et_velocidad_final.getText().toString();
+        sVelocidadInicial = et_velocidad_inicial.getText().toString();
+        sGravedad = et_gravedad.getText().toString();
+
+        int count = 0;
+
+        if (sVelocidadFinal.isEmpty()) {
+            //NO posee distancia
+            bVelocidadFinal = false;
+        } else {
+            bVelocidadFinal = true;
+            count += 1;
         }
 
-        return super.onOptionsItemSelected(item);
+        if (sVelocidadInicial.isEmpty()) {
+            //NO posee distancia
+            bVelocidadInicial = false;
+        } else {
+            bVelocidadInicial = true;
+            count += 1;
+        }
+
+        if (sGravedad.isEmpty()) {
+            //NO posee distancia
+            bGravedad = false;
+        } else {
+            bGravedad = true;
+            count += 1;
+        }
+
+        if (sAltura.isEmpty()) {
+            //NO posee distancia
+            bAltura = false;
+        } else {
+            bAltura = true;
+            count += 1;
+        }
+
+        if (sTiempo.isEmpty()) {
+            bTiempo = false;
+        } else {
+            bTiempo = true;
+            count += 1;
+        }
+
+
+        if (count >= 3 && count < 5) {
+
+            InteractVerticalThrow interact = new InteractVerticalThrow();
+            interact.iniFlags();
+
+            if(bAltura){
+                altura = Double.parseDouble(sAltura);
+                interact.setHeight(altura);
+            }
+
+            if(bVelocidadFinal){
+                velocidad_final = Double.parseDouble(sVelocidadFinal);
+                interact.setFinVelocity(velocidad_final);
+            }
+
+            if(bVelocidadInicial){
+                velocidad_inicial = Double.parseDouble(sVelocidadInicial);
+                interact.setIniVelocity(velocidad_inicial);
+            }
+
+            if(bTiempo){
+                tiempo = Double.parseDouble(sTiempo);
+                interact.setTime(tiempo);
+            }
+
+            if(bGravedad){
+                gravedad = Double.parseDouble(sGravedad);
+                interact.setGravity(gravedad);
+            }
+
+            interact.fnSolveSystem();
+
+            ArrayList<String> log = interact.getLog();
+            String logConcat = "";
+            for(int i=0; i<log.size(); i++){
+                if(i>0)
+                    logConcat += "\n";
+
+                logConcat += log.get(i);
+            }
+
+            Intent intent = new Intent(this, RespuestasActivity.class);
+            intent.putExtra(RespuestasActivity.KEY_RESPUESTA, RespuestasActivity.RESPUESTA_TIRO_VERTICAL);
+            intent.putExtra(RespuestasActivity.KEY_ALTURA, interact.getHeight());
+            intent.putExtra(RespuestasActivity.KEY_TIEMPO, interact.getTime());
+            intent.putExtra(RespuestasActivity.KEY_GRAVEDAD, interact.getGravity());
+            intent.putExtra(RespuestasActivity.KEY_VELOCIDAD_FINAL, interact.getFinVelocity());
+            intent.putExtra(RespuestasActivity.KEY_VELOCIDAD_INICIAL, interact.getIniVelocity());
+            intent.putExtra(RespuestasActivity.KEY_LOG, logConcat);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                getWindow().setExitTransition(new Slide());
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                startActivity(intent, ActivityOptions
+                        .makeSceneTransitionAnimation(this).toBundle());
+            } else {
+                startActivity(intent);
+            }
+
+        } else {
+            ShowAlertDialog.newDialog("MRUV", "Necesitas como minimo 3 datos y al menos uno vacio.");
+        }
+
     }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()){
+            case R.id.btn_calcular:
+                calcular();
+                break;
+        }
+
+    }
+
 }

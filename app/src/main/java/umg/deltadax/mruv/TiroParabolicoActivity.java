@@ -12,6 +12,8 @@ import android.widget.EditText;
 
 import org.w3c.dom.DOMImplementation;
 
+import java.util.ArrayList;
+
 import umg.deltadax.mruv.utility.ParabolicShot;
 import umg.deltadax.mruv.utility.ShowAlertDialog;
 
@@ -654,6 +656,15 @@ public class TiroParabolicoActivity extends Activity implements View.OnClickList
 
             } while (!bTodoCorrecto);
 
+            ArrayList<String> log = object.getLog();
+            String logConcat = "";
+            for(int i=0; i<log.size(); i++){
+                if(i>0)
+                    logConcat += "\n";
+
+                logConcat += log.get(i);
+            }
+
             alturaMaxima = Double.parseDouble(sAlturaMaxima);
             distanciaMaxima = Double.parseDouble(sDistanciaMaxima);
             angulo = Double.parseDouble(sAngulo);
@@ -677,6 +688,7 @@ public class TiroParabolicoActivity extends Activity implements View.OnClickList
             intent.putExtra(RespuestasActivity.KEY_VELOCIDAD_INICIAL, velocidadInicial);
             intent.putExtra(RespuestasActivity.KEY_VELOCIDAD_INICIALX, velocidadInicialX);
             intent.putExtra(RespuestasActivity.KEY_VELOCIDAD_INICIALY, velocidadInicialY);
+            intent.putExtra(RespuestasActivity.KEY_LOG, logConcat);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                 getWindow().setExitTransition(new Slide());

@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 import umg.deltadax.mruv.utility.Mru;
 import umg.deltadax.mruv.utility.ShowAlertDialog;
 
@@ -137,11 +139,22 @@ public class MruActivity extends Activity implements View.OnClickListener {
             ShowAlertDialog.newDialog("MRU", sMensaje);
             Log.d(TAG, sMensaje);
         } else {
+
+            ArrayList<String> log = object.getLog();
+            String logConcat = "";
+            for(int i=0; i<log.size(); i++){
+                if(i>0)
+                    logConcat += "\n";
+
+                logConcat += log.get(i);
+            }
+
             Intent intent = new Intent(this, RespuestasActivity.class);
             intent.putExtra(RespuestasActivity.KEY_RESPUESTA, RespuestasActivity.RESPUESTA_MRU);
             intent.putExtra(RespuestasActivity.KEY_DISTANCIA, distancia);
             intent.putExtra(RespuestasActivity.KEY_VELCODIAD, velocidad);
             intent.putExtra(RespuestasActivity.KEY_TIEMPO, tiempo);
+            intent.putExtra(RespuestasActivity.KEY_LOG, logConcat);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                 getWindow().setExitTransition(new Slide());

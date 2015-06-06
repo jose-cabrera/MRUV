@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
+import java.util.ArrayList;
+
 import umg.deltadax.mruv.utility.Mruv;
 import umg.deltadax.mruv.utility.ShowAlertDialog;
 
@@ -393,6 +395,15 @@ public class MruvActivity extends Activity implements View.OnClickListener {
 
             } while (!bTodoCorrecto);
 
+            ArrayList<String> log = object.getLog();
+            String logConcat = "";
+            for(int i=0; i<log.size(); i++){
+                if(i>0)
+                    logConcat += "\n";
+
+                logConcat += log.get(i);
+            }
+
             Intent intent = new Intent(this, RespuestasActivity.class);
             intent.putExtra(RespuestasActivity.KEY_RESPUESTA, RespuestasActivity.RESPUESTA_MRUV);
             intent.putExtra(RespuestasActivity.KEY_DISTANCIA, distancia);
@@ -400,6 +411,7 @@ public class MruvActivity extends Activity implements View.OnClickListener {
             intent.putExtra(RespuestasActivity.KEY_ACELERACION, aceleracion);
             intent.putExtra(RespuestasActivity.KEY_VELOCIDAD_FINAL, velocidad_final);
             intent.putExtra(RespuestasActivity.KEY_VELOCIDAD_INICIAL, velocidad_inicial);
+            intent.putExtra(RespuestasActivity.KEY_LOG, logConcat);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                 getWindow().setExitTransition(new Slide());

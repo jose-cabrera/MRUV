@@ -6,22 +6,22 @@ import java.util.ArrayList;
 /*
  * ############################################################################
  *   Autor: JoshBucaro
- *   Fecha CreaciÃ³n: 2015/04/25
+ *   Fecha Creación: 2015/04/25
  *
- *   Funcionalidad: Propiedades y Funciones bÃ¡sicas para desarrollar MRUV
+ *   Funcionalidad: Propiedades y Funciones básicas para desarrollar MRUV
  *
- *   Historial de ModificaciÃ³n:
+ *   Historial de Modificación:
  *   AUTHOR	 FECHA		  RAZON
  *
  *
  *
  * ############################################################################
  */
-public class InteractFreeFall {
+public class InteractVerticalThrow {
 
     // Used System-----
     // ----------------
-    private FreeFall FreeFallObj = new FreeFall();
+    private VerticalThrow FreeFallObj = new VerticalThrow();
 
     // Properties-----
     // ---------------
@@ -40,7 +40,7 @@ public class InteractFreeFall {
 
     // constructor-----
     // ----------------
-    public InteractFreeFall() {
+    public InteractVerticalThrow() {
         this.Gravity = 0;
         this.Time = 0;
         this.Height = 0;
@@ -170,7 +170,7 @@ public class InteractFreeFall {
 
             }
             if (!this.FlgTime) {
-                // Aqui va la mitica funciÃ³n
+                // Aqui va la mitica función
                 if (this.FlgHeight && this.FlgFinVelocity && this.FlgIniVelocity)
                     this.setTime(FreeFallObj.fnCalcTime3());
             }

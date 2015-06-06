@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 import umg.deltadax.mruv.utility.InteractFreeFall;
 import umg.deltadax.mruv.utility.ShowAlertDialog;
 import umg.deltadax.mruv.utility.ShowDialog;
@@ -124,6 +126,15 @@ public class CaidaLibreActivity extends Activity implements View.OnClickListener
 
             interact.fnSolveSystem();
 
+            ArrayList<String> log = interact.getLog();
+            String logConcat = "";
+            for(int i=0; i<log.size(); i++){
+                if(i>0)
+                    logConcat += "\n";
+
+                logConcat += log.get(i);
+            }
+
             Intent intent = new Intent(this, RespuestasActivity.class);
             intent.putExtra(RespuestasActivity.KEY_RESPUESTA, RespuestasActivity.RESPUESTA_CAIDA_LIBRE);
             intent.putExtra(RespuestasActivity.KEY_ALTURA, interact.getHeight());
@@ -131,6 +142,7 @@ public class CaidaLibreActivity extends Activity implements View.OnClickListener
             intent.putExtra(RespuestasActivity.KEY_GRAVEDAD, interact.getGravity());
             intent.putExtra(RespuestasActivity.KEY_VELOCIDAD_FINAL, interact.getFinVelocity());
             intent.putExtra(RespuestasActivity.KEY_VELOCIDAD_INICIAL, interact.getIniVelocity());
+            intent.putExtra(RespuestasActivity.KEY_LOG, logConcat);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                 getWindow().setExitTransition(new Slide());

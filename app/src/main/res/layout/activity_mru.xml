@@ -48,7 +48,11 @@
             android:inputType="numberDecimal"
             android:ems="10"
             android:id="@+id/et_distancia"
-            android:layout_weight="1" />
+            android:layout_weight="1" >
+
+            <requestFocus/>
+
+        </EditText>
     </LinearLayout>
 
     <LinearLayout
